@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 //import 'MyButton.dart';
 import 'package:math_expressions/math_expressions.dart';
+import 'package:time/time.dart';
 
 void main() {
 
@@ -108,36 +109,27 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: AnimatedOpacity(
                       duration: const Duration(milliseconds: 500),
                       opacity: _visible ? 1.0 : 0.0 ,
-                      child: DecoratedBox(
-                        position: DecorationPosition.foreground,
+                      child: Container(
+                        height: 200,
+                        width: 200,
+                        padding: const EdgeInsets.all(10.0),
+                        alignment: Alignment.center,
                         decoration: BoxDecoration(
-                          /* boxShadow: [
-                            BoxShadow(
-                            color: colorScheme.shadow,
-                              offset: const Offset(2,2),
-                              blurRadius: 20.0,
-                              spreadRadius: 10.0,
-                          ),
-                          ],
-                      */
-                          border: Border.all(
-                            width: 6,
-                          ),
-                          borderRadius: BorderRadius.circular(12),
-
-                        ),
-                        child: Container(
-                          height: 200,
-                          width: 200,
-                          child: Container(
-                            padding: const EdgeInsets.all(10.0),
-                              alignment: Alignment.center,
-                              color: colorScheme.error,
-                              child: Text("Error was thrown: $errMsg",style: TextStyle(fontSize: 18, color: colorScheme.onError), ),
+                            /* boxShadow: [
+                              BoxShadow(
+                              color: colorScheme.shadow,
+                                offset: const Offset(2,2),
+                                blurRadius: 20.0,
+                                spreadRadius: 10.0,
                             ),
+                            ], */
+                        border: Border.all(width: 6),
+                        borderRadius: BorderRadius.circular(12),
+                        color: colorScheme.error,
                         ),
+                        child: Text("Error was thrown: $errMsg",style: TextStyle(fontSize: 18, color: colorScheme.onError), ),
                       ),
-                    ),
+                   ),
                 ),
                 Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -268,26 +260,37 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 //on pressing equal to
   void equalPressed() {
-    String finaluserinput1 = userInput.replaceAll('x', '*');
+    String finaluserinput = userInput.replaceAll('x', '*');
 
     try {
       Parser p = Parser();
-      Expression exp = p.parse(finaluserinput1);
+      Expression exp = p.parse(finaluserinput);
       ContextModel cm = ContextModel();
       double eval = exp.evaluate(EvaluationType.REAL, cm);
 
       answer = eval.toString();
     } catch (err){
-      print("error: $err");
-
       errMsg=err;
       setState(() {
         _visible = !_visible;
       });
+
+      errorAnim();
     }
 
   }
+
+//error button animation handler
+  void errorAnim() async{
+    await 3.seconds.delay;
+    setState(() {
+      _visible = !_visible;
+    });
+  }
+
 }
+
+
 
 class MyButton extends StatelessWidget{
 
@@ -300,19 +303,23 @@ class MyButton extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
-    return ClipRect(
-      child: GestureDetector(
-        onTap: buttonPress,
-        child: Padding(
-          padding: const EdgeInsets.all(0.38),
-          child: Container(
-            color: buttonColor,
-            child: Center(
-              child: Text(buttonText, style: TextStyle(fontSize:20,fontWeight:FontWeight.bold, color: textColor )),
-            ),
-          ),
-        ),
-      ),
+    return Padding(
+            padding: const EdgeInsets.all(0.38),
+                child: Material(
+                  color: buttonColor,
+                  child: InkResponse(
+                    splashColor: Colors.grey,
+                    enableFeedback: true,
+                    containedInkWell: false,
+                    onTap: buttonPress,
+                    highlightShape: BoxShape.circle,
+                    child: Center(
+                      child: Text(buttonText, style: TextStyle(fontSize:20,fontWeight:FontWeight.bold, color: textColor )),
+                    ),
+                  ),
+                ),
+
+
     );
   }
 
