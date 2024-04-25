@@ -1,6 +1,6 @@
 {
-    "name": "devsoc_calc",
-    "short_name": "devsoc_calc",
+    "name": "fire_calc",
+    "short_name": "fire_calc",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

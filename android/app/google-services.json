@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "704837112314",
+    "project_id": "devsoc-calc-b52e2",
+    "storage_bucket": "devsoc-calc-b52e2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:704837112314:android:723bae11b5f272553b9443",
+        "android_client_info": {
+          "package_name": "com.hyperbean18.fire_calc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "704837112314-g6frt6n9odbikp618ckkpcsa2aubadrv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsJbohwuo7lGLXSoHlhPOHcV12qpmOA2M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "704837112314-g6frt6n9odbikp618ckkpcsa2aubadrv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "704837112314-du9556ftbac842a0jk0jgh3af69ghj1i.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.devsocCalc.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
